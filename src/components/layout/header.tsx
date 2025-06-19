@@ -13,7 +13,8 @@ import {
   Settings, 
   Github,
   Moon,
-  Sun
+  Sun,
+  BookOpen
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
@@ -21,6 +22,7 @@ import { cn } from '@/lib/utils'
 const navigation = [
   { name: 'Home', href: '/', icon: Home },
   { name: 'Chat', href: '/chat', icon: MessageSquare },
+  { name: 'Novel Writer', href: '/novel', icon: BookOpen },
   { name: 'Settings', href: '/settings', icon: Settings },
 ]
 
