@@ -27,9 +27,8 @@ api.interceptors.request.use(
     }
     
     // Add security headers
-    config.headers = {
-      ...config.headers,
-      'X-Requested-With': 'XMLHttpRequest',
+    if (config.headers) {
+      config.headers['X-Requested-With'] = 'XMLHttpRequest'
     }
     
     return config
