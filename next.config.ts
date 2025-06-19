@@ -1,8 +1,12 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  // Enable static optimization
-  output: 'standalone',
+  // Enable static export for deployment
+  output: 'export',
+  trailingSlash: true,
+  images: {
+    unoptimized: true,
+  },
   
   // Security headers
   async headers() {

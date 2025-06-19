@@ -7,6 +7,59 @@ module.exports = {
     './app/**/*.{ts,tsx}',
     './src/**/*.{ts,tsx}',
   ],
+  safelist: [
+    // Gradient classes
+    'from-purple-400',
+    'via-pink-400', 
+    'to-blue-400',
+    'from-purple-500',
+    'to-pink-500',
+    'from-purple-600',
+    'to-pink-600',
+    'from-blue-600',
+    'to-purple-600',
+    'from-slate-900',
+    'via-purple-900',
+    'to-slate-900',
+    'from-purple-900',
+    'via-blue-900',
+    'to-pink-900',
+    // Background gradients
+    'bg-gradient-to-r',
+    'bg-gradient-to-br',
+    'bg-gradient-to-l',
+    // Text gradients
+    'bg-clip-text',
+    'text-transparent',
+    // Animation classes
+    'animate-pulse',
+    'animate-spin',
+    // Transform classes
+    'hover:scale-105',
+    'hover:scale-110',
+    'group-hover:scale-110',
+    'group-hover:rotate-12',
+    'group-hover:translate-x-2',
+    // Backdrop effects
+    'backdrop-blur-lg',
+    'backdrop-blur-xl',
+    // Shadow effects
+    'shadow-2xl',
+    'shadow-purple-500/25',
+    'shadow-blue-500/25',
+    // Border effects
+    'border-purple-500/30',
+    'border-white/20',
+    'border-white/10',
+    // Background opacity
+    'bg-white/10',
+    'bg-white/5',
+    'bg-black/20',
+    'bg-black/30',
+    'bg-purple-500/30',
+    'bg-blue-500/30',
+    'bg-pink-500/30',
+  ],
   prefix: "",
   theme: {
     container: {
