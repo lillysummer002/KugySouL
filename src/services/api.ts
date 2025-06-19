@@ -12,16 +12,32 @@ const api = axios.create({
   headers: {
     'Content-Type': 'application/json',
   },
+  // Security configurations
+  withCredentials: false, // Don't send cookies for security
+  maxRedirects: 5,
+  validateStatus: (status) => status < 500, // Accept 4xx as valid responses
 })
 
 // Request interceptor
 api.interceptors.request.use(
   (config) => {
-    console.log(`🚀 API Request: ${config.method?.toUpperCase()} ${config.url}`)
+    // Only log in development
+    if (process.env.NODE_ENV === 'development') {
+      console.log(`🚀 API Request: ${config.method?.toUpperCase()} ${config.url}`)
+    }
+    
+    // Add security headers
+    config.headers = {
+      ...config.headers,
+      'X-Requested-With': 'XMLHttpRequest',
+    }
+    
     return config
   },
   (error) => {
-    console.error('❌ API Request Error:', error)
+    if (process.env.NODE_ENV === 'development') {
+      console.error('❌ API Request Error:', error)
+    }
     return Promise.reject(error)
   }
 )
@@ -29,12 +45,26 @@ api.interceptors.request.use(
 // Response interceptor
 api.interceptors.response.use(
   (response) => {
-    console.log(`✅ API Response: ${response.status} ${response.config.url}`)
+    // Only log in development
+    if (process.env.NODE_ENV === 'development') {
+      console.log(`✅ API Response: ${response.status} ${response.config.url}`)
+    }
     return response
   },
   (error) => {
-    console.error('❌ API Response Error:', error.response?.status, error.response?.data)
-    return Promise.reject(error)
+    // Only log detailed errors in development
+    if (process.env.NODE_ENV === 'development') {
+      console.error('❌ API Response Error:', error.response?.status, error.response?.data)
+    }
+    
+    // Sanitize error for production
+    const sanitizedError = {
+      message: error.message,
+      status: error.response?.status,
+      statusText: error.response?.statusText,
+    }
+    
+    return Promise.reject(sanitizedError)
   }
 )
 
