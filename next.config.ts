@@ -1,8 +1,12 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  // Enable static optimization
-  output: 'standalone',
+  // Enable static export for easy deployment
+  output: 'export',
+  trailingSlash: true,
+  images: {
+    unoptimized: true,
+  },
   
   // Security headers
   async headers() {
@@ -38,11 +42,7 @@ const nextConfig: NextConfig = {
     NEXT_PUBLIC_APP_NAME: process.env.NEXT_PUBLIC_APP_NAME,
   },
 
-  // Image optimization
-  images: {
-    domains: ['minatoz997-backend66.hf.space'],
-    formats: ['image/webp', 'image/avif'],
-  },
+  // Image optimization (merged with export config above)
 
   // Experimental features
   experimental: {
